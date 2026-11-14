@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منصة التعلّم المستمر</title>
+<meta name="theme-color" content="#2f6f62">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{--bg:#f4f1ea;--card:#fffdf8;--ink:#23332f;--mut:#66736f;--pri:#2f6f62;--pri2:#e3efe9;--acc:#c9973a;--line:#e4dfd2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14201d;--card:#1c2b27;--ink:#e9efec;--mut:#9fb0aa;--pri:#6fc0aa;--pri2:#24403a;--acc:#e3c77a;--line:#2c3f39}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.7 Tahoma,"Noto Sans Arabic",system-ui,sans-serif;padding-bottom:84px}
+main{max-width:640px;margin:auto;padding:16px}
+h1{font-size:1.4rem}h2{font-size:1.1rem;margin:20px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+.hero{background:linear-gradient(135deg,var(--pri),#4b9a86);color:#fff;border:0;padding:22px}
+.hero p{opacity:.92}
+.btn{display:inline-block;border:0;border-radius:12px;padding:10px 18px;font:inherit;background:var(--acc);color:#2a2112;cursor:pointer;margin-top:12px}
+.btn.s{background:var(--pri2);color:var(--pri)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{text-align:center}.stat b{display:block;font-size:1.5rem;color:var(--pri)}.stat span{color:var(--mut);font-size:.85rem}
+.bar{height:10px;background:var(--pri2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pri);border-radius:9px}
+.row{display:flex;align-items:center;gap:12px}.row>.g{flex:1;min-width:0}
+.ico{width:46px;height:46px;border-radius:14px;background:var(--pri2);display:grid;place-items:center;font-size:1.4rem;flex:none}
+.mut{color:var(--mut);font-size:.88rem}
+.tag{font-size:.75rem;background:var(--pri2);color:var(--pri);border-radius:8px;padding:2px 8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:6px 14px;font:inherit;white-space:nowrap;cursor:pointer}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+nav{position:fixed;inset:auto 0 0 0;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav a{flex:1;text-align:center;text-decoration:none;color:var(--mut);font-size:.7rem;padding:4px 0;border-radius:12px}
+nav a span{display:block;font-size:1.3rem;line-height:1.3}nav a.on{color:var(--pri);background:var(--pri2)}
+.chat{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.m{max-width:85%;padding:10px 14px;border-radius:16px}.m.u{background:var(--pri);color:#fff;align-self:flex-start;border-top-right-radius:4px}.m.a{background:var(--card);border:1px solid var(--line);align-self:flex-end;border-top-left-radius:4px}
+.note{background:#fbf1d9;color:#5a4416;border-radius:12px;padding:10px 14px;font-size:.88rem;margin-bottom:12px}
+@media (prefers-color-scheme:dark){.note{background:#3a331f;color:#ecdba6}}
+form.in{display:flex;gap:8px}form.in input{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:10px 14px;font:inherit;min-width:0}
+.ring{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;flex:none}.ring div{width:72px;height:72px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-weight:bold;color:var(--pri)}
+.wk{display:flex;align-items:flex-end;gap:8px;height:110px}.wk div{flex:1;text-align:center;font-size:.72rem;color:var(--mut)}.wk i{display:block;background:var(--pri);border-radius:8px 8px 0 0;margin-bottom:4px}
+.lh{white-space:pre-line}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<nav id="nav"></nav>
+<script>
+const SUBJ={math:{n:"الرياضيات",i:"🧮"},sci:{n:"العلوم",i:"🔬"},ar:{n:"اللغة العربية",i:"📖"},en:{n:"الإنجليزية",i:"🔤"}};
+const LESSONS=[
+{id:1,s:"math",t:"الكسور العشرية",m:12,b:"الكسر العشري هو طريقة أخرى لكتابة الكسور باستخدام الفاصلة.\nمثال: ٣/١٠ تُكتب ٠٫٣.\nلجمع الكسور العشرية نرتب الفاصلة تحت الفاصلة ثم نجمع كالأعداد العادية."},
+{id:2,s:"math",t:"النسبة والتناسب",m:15,b:"النسبة تقارن بين كميتين من النوع نفسه.\nإذا كان عدد الفتيان ٣ والفتيات ٥ فالنسبة ٣ : ٥.\nالتناسب هو تساوي نسبتين."},
+{id:3,s:"sci",t:"دورة الماء في الطبيعة",m:10,b:"يتبخر الماء من البحار بفعل حرارة الشمس.\nيتكاثف البخار في السماء مكوّنًا السحب.\nثم يعود إلى الأرض مطرًا وتتكرر الدورة."},
+{id:4,s:"sci",t:"أجزاء النبات",m:10,b:"للنبات جذر يمتص الماء، وساق تحمل الأوراق، وأوراق تصنع الغذاء بالضوء.\nتسمى هذه العملية البناء الضوئي."},
+{id:5,s:"ar",t:"الجملة الاسمية",m:14,b:"الجملة الاسمية تبدأ باسم وتتكون من مبتدأ وخبر.\nمثال: الطالبُ مجتهدٌ.\nالمبتدأ مرفوع والخبر مرفوع."},
+{id:6,s:"ar",t:"علامات الترقيم",m:8,b:"الفاصلة تفصل بين أجزاء الكلام، والنقطة تنهي الجملة، وعلامة الاستفهام تأتي بعد السؤال."},
+{id:7,s:"en",t:"Greetings",m:7,b:"Hello = مرحبًا\nGood morning = صباح الخير\nHow are you? = كيف حالك؟\nتدرّب على نطق كل جملة بصوت مسموع."},
+{id:8,s:"en",t:"Numbers 1 to 10",m:9,b:"one, two, three, four, five, six, seven, eight, nine, ten.\nجرّب عدّ الأشياء حولك بالإنجليزية."}];
+const BOOKS=[
+{t:"الرياضيات للصف الخامس",s:"math",k:"كتاب مدرسي",p:180},{t:"مبادئ العلوم",s:"sci",k:"كتاب مدرسي",p:140},
+{t:"قواعد اللغة العربية الميسّرة",s:"ar",k:"مرجع",p:96},{t:"تمارين الحساب الذهني",s:"math",k:"ملخص",p:32},
+{t:"English for Beginners",s:"en",k:"كتاب مدرسي",p:120},{t:"أطلس الكائنات الحية",s:"sci",k:"مرجع",p:210}];
+const DAYS=["س","ح","ن","ث","ر","خ","ج"],WK=[20,35,0,45,30,50,25];
+let done=new Set();try{done=new Set(JSON.parse(localStorage.getItem("done")||"[]"))}catch(e){}
+const save=()=>{try{localStorage.setItem("done",JSON.stringify([...done]))}catch(e){}};
+let keep=0,filt="all",open=0,msgs=[{a:1,t:"أهلًا بك! هذه واجهة المساعد التعليمي. لم يُربط نموذج ذكاء اصطناعي بعد، لذلك لا أستطيع الإجابة عن أسئلتك حاليًا."}];
+const pct=s=>{const l=LESSONS.filter(x=>!s||x.s===s);return Math.round(l.filter(x=>done.has(x.id)).length/l.length*100)};
+const bar=p=>`<div class="bar"><i style="width:${p}%"></i></div>`;
+const NAV=[["home","🏠","الرئيسية"],["dash","📊","لوحتي"],["books","📚","الكتب"],["lessons","🎓","الدروس"],["ai","💬","المساعد"],["progress","📈","التقدم"]];
+const lessonRow=l=>`<div class="card row" data-l="${l.id}" style="cursor:pointer"><div class="ico">${SUBJ[l.s].i}</div><div class="g"><b>${l.t}</b><div class="mut">${SUBJ[l.s].n} · ${l.m} دقيقة</div></div>${done.has(l.id)?'<span class="tag">✓ مكتمل</span>':''}</div>`;
+const V={
+home:()=>`<div class="card hero"><h1>مرحبًا يا أحمد 👋</h1><p>تعلّم شيئًا جديدًا كل يوم، خطوة بعد خطوة.</p><a class="btn" href="#lessons">تابع التعلّم</a></div>
+<div class="grid">${NAV.slice(1).map(n=>`<a class="card stat" href="#${n[0]}" style="text-decoration:none;color:inherit"><b>${n[1]}</b><span style="font-size:.95rem;color:var(--ink)">${n[2]}</span></a>`).join("")}</div>
+<h2>درس اقتراح اليوم</h2>${lessonRow(LESSONS.find(l=>!done.has(l.id))||LESSONS[0])}`,
+dash:()=>{const d=done.size;return`<h1>لوحة الطالب</h1><p class="mut">بيانات تجريبية للطالب أحمد · الصف الخامس</p>
+<div class="grid" style="margin-top:12px"><div class="card stat"><b>${d}/${LESSONS.length}</b><span>دروس مكتملة</span></div><div class="card stat"><b>٥ أيام</b><span>أيام متتالية</span></div><div class="card stat"><b>${d*11}</b><span>دقيقة تعلّم</span></div><div class="card stat"><b>${pct()}%</b><span>الإنجاز الكلي</span></div></div>
+<h2>موادّي</h2>${Object.keys(SUBJ).map(k=>`<div class="card"><div class="row"><span>${SUBJ[k].i}</span><b class="g">${SUBJ[k].n}</b><span class="mut">${pct(k)}%</span></div>${bar(pct(k))}</div>`).join("")}`},
+books:()=>`<h1>الكتب والمواد التعليمية</h1><p class="mut">عيّنات تجريبية، لا توجد ملفات حقيقية بعد.</p>
+<div class="chips" style="margin-top:12px"><button class="chip ${filt=="all"?"on":""}" data-f="all">الكل</button>${Object.keys(SUBJ).map(k=>`<button class="chip ${filt==k?"on":""}" data-f="${k}">${SUBJ[k].n}</button>`).join("")}</div>
+${BOOKS.filter(b=>filt=="all"||b.s==filt).map(b=>`<div class="card row"><div class="ico">${SUBJ[b.s].i}</div><div class="g"><b>${b.t}</b><div class="mut">${b.p} صفحة</div></div><span class="tag">${b.k}</span></div>`).join("")}`,
+lessons:()=>{if(open){const l=LESSONS.find(x=>x.id==open),dn=done.has(l.id);return`<button class="chip" data-back="1">→ الدروس</button><div class="card" style="margin-top:12px"><span class="tag">${SUBJ[l.s].n}</span><h1 style="margin:8px 0">${l.t}</h1><p class="lh">${l.b}</p><button class="btn ${dn?"s":""}" data-done="${l.id}">${dn?"إلغاء الإكمال":"أنهيت الدرس ✓"}</button></div>`}
+return`<h1>الدروس</h1><p class="mut" style="margin-bottom:12px">اختر درسًا لبدء التعلّم.</p>`+Object.keys(SUBJ).map(k=>`<h2>${SUBJ[k].i} ${SUBJ[k].n}</h2>${LESSONS.filter(l=>l.s==k).map(lessonRow).join("")}`).join("")},
+ai:()=>`<h1>المساعد التعليمي</h1><div class="note" style="margin-top:10px">⚠️ النموذج غير مربوط بعد. الردود هنا رسائل ثابتة فقط، وسيُربط بنموذج ذكاء اصطناعي عبر واجهة برمجية في مرحلة لاحقة.</div>
+<div class="chips">${["اشرح لي الكسور","لخّص درس دورة الماء","اختبرني في النحو"].map(t=>`<button class="chip" data-q="${t}">${t}</button>`).join("")}</div>
+<div class="chat">${msgs.map(m=>`<div class="m ${m.a?"a":"u"}">${m.t}</div>`).join("")}</div>
+<form class="in" id="f"><input id="q" placeholder="اكتب سؤالك هنا..." autocomplete="off"><button class="btn" style="margin:0">إرسال</button></form>`,
+progress:()=>{const p=pct();return`<h1>تقدّمي</h1><div class="card row" style="margin-top:12px"><div class="ring" style="background:conic-gradient(var(--pri) ${p*3.6}deg,var(--pri2) 0)"><div>${p}%</div></div><div class="g"><b>الإنجاز الكلي</b><div class="mut">أنهيت ${done.size} من ${LESSONS.length} دروس</div></div></div>
+<h2>نشاط الأسبوع (دقائق)</h2><div class="card"><div class="wk">${WK.map((v,i)=>`<div><i style="height:${v*2}px"></i>${DAYS[i]}</div>`).join("")}</div></div>
+<h2>التقدم حسب المادة</h2>${Object.keys(SUBJ).map(k=>`<div class="card"><div class="row"><b class="g">${SUBJ[k].n}</b><span class="mut">${pct(k)}%</span></div>${bar(pct(k))}</div>`).join("")}<p class="mut">النشاط الأسبوعي بيانات تجريبية.</p>`}};
+function render(){const r=(location.hash.slice(1)||"home");const v=V[r]?r:"home";
+document.getElementById("nav").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${n[0]==v?"on":""}"><span>${n[1]}</span>${n[2]}</a>`).join("");
+document.getElementById("app").innerHTML=V[v]();scrollTo(0,0)}
+function send(t){if(!t.trim())return;msgs.push({t:t.replace(/</g,"&lt;")},{a:1,t:"استلمت سؤالك، لكن المساعد غير متصل بنموذج ذكاء اصطناعي بعد. سيعمل هذا القسم بعد الربط في مرحلة لاحقة."});render()}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-l],[data-f],[data-back],[data-done],[data-q]");if(!t)return;const d=t.dataset;
+if(d.l){open=+d.l;if(location.hash!=="#lessons")keep=1;location.hash="lessons";render()}else if(d.f){filt=d.f;render()}else if(d.back){open=0;render()}
+else if(d.done){const i=+d.done;done.has(i)?done.delete(i):done.add(i);save();render()}else if(d.q)send(d.q)});
+document.addEventListener("submit",e=>{e.preventDefault();send(document.getElementById("q").value)});
+addEventListener("hashchange",()=>{if(keep)keep=0;else open=0;render()});render();
+if("serviceWorker"in navigator)addEventListener("load",()=>{try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}});
+</script>
+</body>
+</html>
